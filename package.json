@@ -1,0 +1,22 @@
+{
+  "name": "ik-usersapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pardjai/ik-usersAPI.git"
+  },
+  "author": "Ilya Kozionov <IK.Ilyakozionov@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pardjai/ik-usersAPI/issues"
+  },
+  "homepage": "https://github.com/Pardjai/ik-usersAPI#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
