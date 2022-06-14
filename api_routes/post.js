@@ -3,17 +3,18 @@ const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 const router = Router()
 
+//===REGISTRATION===
 router.post('/user/register', async (req, res) => {
     try {
         const {name, email, password} = req.body
 
         const [candidate] = await User.findAll({
             where:{
-                email: email
+                email
             }
         })
 
-        if(candidate){
+        if (candidate){
             throw new Error('Attempt to add an existing user')
         }
 
@@ -34,11 +35,34 @@ router.post('/user/register', async (req, res) => {
     }
 })
 
+//===LOGIN===
 router.post('/user/login', async (req, res) => {
     try {
-        
+
+        const {email, password} = req.body
+        const [candidate] = await User.findAll({
+            where: {
+                email
+            }
+        })
+
+        if (! candidate){
+            throw new Error('Received unknown email')
+        }
+        const userPassword = candidate.password
+
+        const isValidPassword = await bcrypt.compare(password, userPassword)
+        if (! isValidPassword){
+            throw new Error('Received invalid password')
+        }
+
+        res.status(200).json()
+
     } catch (err) {
-        console.error(`Login error: ${err}`);
+        console.error(`Login ${err}`);
+        res.status(500).json({
+            message: 'Server error during login'
+        })
     }
 })
 
