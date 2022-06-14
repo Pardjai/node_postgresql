@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const connection = require('../utils/database')
+const User = require('../models/user')
 const router = Router()
 
 router.get('/profile/:id', (req, res) => {

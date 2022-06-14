@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const User = require('../models/user')
 const router = Router()
 
 router.post('/user/register', (req, res) => {
