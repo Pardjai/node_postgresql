@@ -1,23 +1,20 @@
-const util = require('util')
 const express = require('express')
-const connection = require('./utils/database')
-const profileRoutes = require('./routes/profile')
+const path = require('path')
+const apiGetRoutes = require('./api_routes/get')
+const apiPostRoutes = require('./api_routes/post')
+const apiPutRoutes = require('./api_routes/put')
 const app = express()
 
 const PORT = process.env.PORT || 3000
 
 app.use(express.json())
+app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/profile', profileRoutes)
-
-// делаем метод connection.connect асинхронным
-const connect = util.promisify(connection.connect)
+app.use('/GET', apiGetRoutes)
+app.use('/POST', apiPostRoutes)
+app.use('/PUT', apiPutRoutes)
 
 async function start(){
-
-  await connect.call(connection) // вызываем в контексте connection чтобы избежать ошибок при рименении util.promisify к методам
-    .then(res => console.log(`Connection DB successful`))
-    .catch(err => console.error(`Connection is failed with: ${err.sqlMessage}`))
 
     app.listen(PORT)
     console.log(`Server has been started on port: ${PORT}`); 
