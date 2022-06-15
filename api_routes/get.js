@@ -23,6 +23,7 @@ router.get('/profiles', async (req, res) => {
             offset = 0
         }
         const users = await User.findAll({
+            order: [['createdAt', 'DESC']],
             limit,
             offset
         })
