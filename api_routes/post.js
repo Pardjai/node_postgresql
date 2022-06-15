@@ -1,11 +1,20 @@
 const { Router } = require('express')
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
+const {validationResult} = require('express-validator/check')
+const {registerValidators, loginValidators} = require('../utils/validators')
 const router = Router()
 
 //===REGISTRATION===
-router.post('/user/register', async (req, res) => {
+router.post('/user/register', registerValidators, async (req, res) => {
     try {
+
+        const errors = validationResult(req);
+         if (!errors.isEmpty()) {
+            console.log(errors);
+            return res.status(422).json('Invalid register-data. Not processed');
+         }
+
         const {name, email, password} = req.body
 
         const [candidate] = await User.findAll({
@@ -36,8 +45,14 @@ router.post('/user/register', async (req, res) => {
 })
 
 //===LOGIN===
-router.post('/user/login', async (req, res) => {
+router.post('/user/login', loginValidators, async (req, res) => {
     try {
+
+        const errors = validationResult(req);
+         if (!errors.isEmpty()) {
+            console.log(errors);
+            return res.status(422).json('Invalid login-data. Not processed');
+         }
 
         const {email, password} = req.body
         const [candidate] = await User.findAll({
