@@ -4,10 +4,10 @@ API:
 
  /profile/myId 
 ======================
-GET
-Get user with id == myId
+* GET
+Get user with id == myId*
 
-PUT
+* PUT
 Change user properties
 ______________________
   input: JSON {
@@ -19,19 +19,19 @@ ______________________
 ______________________
   output: JSON user(all fields)
 ______________________
-All properties  are optional. 
+*All properties  are optional. 
 You cannot set empty properties (verified by the validator).
 The list of fields to change is in the file keys\keys.prod.js.
 
  /profiles?page=N 
 ======================
-GET
+* GET
 Get a list of users (page N)
-* pagination - 10 items on page 
+*pagination - 10 items on page 
 
 /user 
 ======================
-POST
+* POST
 registration and login
 
 -> /register
