@@ -1,5 +1,10 @@
 # ik-usersAPI
 
+!to work, you need to fill in the file keys\keys.dev.js or run the program in the appropriate environment
+!variables used in the program:  
+* DB_USER, DB_PASSWORD, DB_NAME - MySQL parameters
+* CHANGEABLE_FIELDS: ['name', 'surname', 'email', 'gender'] - a list of parameters that the user can edit
+
 API:
 
  /profile/myId 
