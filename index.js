@@ -2,9 +2,9 @@ const express = require('express')
 const path = require('path')
 const sequelize = require('./utils/database')
 const fileMiddleware = require('./middleware/file')
-const apiGetRoutes = require('./api_routes/get')
-const apiPostRoutes = require('./api_routes/post')
-const apiPutRoutes = require('./api_routes/put')
+const profilesRoutes = require('./routes/profiles')
+const profileRoutes = require('./routes/profile')
+const userRoutes = require('./routes/user')
 
 const app = express()
 
@@ -12,9 +12,9 @@ app.use(express.json())
 app.use(fileMiddleware.single('photo_url'))
 app.use('/images',express.static(path.join(__dirname, 'images')))
 
-app.use('/GET', apiGetRoutes)
-app.use('/POST', apiPostRoutes)
-app.use('/PUT', apiPutRoutes)
+app.use('/profiles', profilesRoutes)
+app.use('/profile', profileRoutes)
+app.use('/user', userRoutes)
 
 const PORT = process.env.PORT || 3000
 async function start(){

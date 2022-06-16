@@ -6,7 +6,7 @@ const {registerValidators, loginValidators} = require('../utils/validators')
 const router = Router()
 
 //===REGISTRATION===
-router.post('/user/register', registerValidators, async (req, res) => {
+router.post('/register', registerValidators, async (req, res) => {
     try {
 
         const errors = validationResult(req);
@@ -45,7 +45,7 @@ router.post('/user/register', registerValidators, async (req, res) => {
 })
 
 //===LOGIN===
-router.post('/user/login', loginValidators, async (req, res) => {
+router.post('/login', loginValidators, async (req, res) => {
     try {
 
         const errors = validationResult(req);

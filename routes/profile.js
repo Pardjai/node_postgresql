@@ -5,7 +5,19 @@ const {profileEditValidators} = require('../utils/validators')
 const {CHANGEABLE_FIELDS} = require('../keys')
 const router = Router()
 
-router.put('/profile/:id', profileEditValidators, async (req, res) => {
+router.get('/:id', async (req, res) => {
+    try {
+
+        const user = await User.findByPk(+req.params.id)
+
+        res.status(200).json({user})
+        
+    } catch (err) {
+        console.error(`Get user error: ${err}`);
+    }
+})
+
+router.put('/:id', profileEditValidators, async (req, res) => {
     try {
 
         const errors = validationResult(req);

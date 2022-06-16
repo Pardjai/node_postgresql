@@ -2,19 +2,7 @@ const { Router } = require('express')
 const User = require('../models/user')
 const router = Router()
 
-router.get('/profile/:id', async (req, res) => {
-    try {
-
-        const user = await User.findByPk(+req.params.id)
-
-        res.status(200).json({user})
-        
-    } catch (err) {
-        console.error(`Get user error: ${err}`);
-    }
-})
-
-router.get('/profiles', async (req, res) => {
+router.get('', async (req, res) => {
     try {
         const limit = 10
         const page = +req.query.page
