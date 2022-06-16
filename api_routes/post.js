@@ -71,7 +71,7 @@ router.post('/user/login', loginValidators, async (req, res) => {
             throw new Error('Received invalid password')
         }
 
-        res.status(200).json()
+        res.status(200).json('Authentication was successful')
 
     } catch (err) {
         console.error(`Login ${err}`);
