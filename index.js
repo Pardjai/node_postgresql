@@ -63,8 +63,12 @@ app.put('/profile/:id', profileEditValidators, async (req, res) => {
 
       const user = await User.findByPk(+req.params.id)
 
+      /*
+        в req.body могут быть ключи для свойств пользователя, которые нельзя обновлять. цикл ниже проходится по свойствам, которые можно
+        изменять и изменяет их, если в req.body данное свойство не null или undefined 
+      */
       CHANGEABLE_FIELDS.forEach(fieldName => {
-          user[fieldName] = req.body[fieldName] ?? user[fieldName]
+          user[fieldName] = req.body[fieldName] ?? user[fieldName] 
       })
 
       if (req.file) {
